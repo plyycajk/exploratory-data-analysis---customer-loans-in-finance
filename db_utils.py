@@ -52,7 +52,13 @@ def loan_payments_to_dataframe(dbcredentials):
         print('loan_payments data extracted and available in \'loan_payments\' dataframe') 
         return df
 
+def save_to_csv(dataframe):
+    dataframe.to_csv(f'{dataframe.name}.csv', sep=',', index=False)
+    print(f'{dataframe.name} dataframe saved to {dataframe.name}.csv in folder')
 
 if __name__ == '__main__':
     loan_payments = loan_payments_to_dataframe('credentials')
+    loan_payments.name = 'loan_payments'
+    save_to_csv(loan_payments)
+
 
