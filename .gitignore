@@ -1,3 +1,5 @@
 #ignore credentials yaml file
 
 /credentials.yaml
+/loan_payments.csv
+/explore_data.py
