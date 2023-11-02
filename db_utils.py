@@ -1,18 +1,27 @@
 #imports required for script
 from sqlalchemy import create_engine
+import os
 import pandas as pd
 import yaml
 
 
-def load_credentials(filename):
-    '''This function loads a .yaml file containing database credential information'''
+def load_yaml(filename: str):
+    '''
+    This function loads a .yaml file containing database credential information when the name of the file is specified
+    
+    Args:
+        filename (str): the name of the file without the .yaml extension
+
+    Returns:
+        loaded_yaml (dict): the loaded contents of the .yaml file
+    '''
     with open (f'{filename}.yaml','r') as f:
-        loaded_credentials = yaml.safe_load(f)
-        return loaded_credentials
+        loaded_yaml = yaml.safe_load(f)
+        return loaded_yaml
 
 class  RDSDatabaseConnector(object):
     '''
-    This class establishes a connection to relational database
+    This class establishes a connection to a relational database
     
     Attributes:
         self.db_credentials (dict): database credentials to allow connection, loaded from load_credentials() function
@@ -30,7 +39,7 @@ class  RDSDatabaseConnector(object):
         '''
         See help(RDSDatabaseConnector) for accurate signature
         '''
-        self.db_credentials = load_credentials(connection_credentials)
+        self.db_credentials = load_yaml(connection_credentials)
         self.user = self.db_credentials['RDS_USER']
         self.password = self.db_credentials['RDS_PASSWORD']
         self.host = self.db_credentials['RDS_HOST']
@@ -48,12 +57,12 @@ class  RDSDatabaseConnector(object):
         This function is used to instantiate a SQLAlchemy engine to connect to a database.
         
         Returns:
-            A SQLAlchemy engine connected to the database: self.dbconn
+            A SQLAlchemy engine object connected to the database: self.dbconn
         '''
         self.engine = create_engine(f"{self.db_type}+{self.dbapi}://{self.user}:{self.password}@{self.host}:{self.port}/{self.database}")
-        print('creating engine')
+        print('creating engine \nestablishing connection...')
         self.dbconn = self.engine.connect()
-        print('establishing connection')
+        print('connection established')
         return self.dbconn
 
 
@@ -88,11 +97,16 @@ def save_to_csv(dataframe):
     Returns:
         .csv file of dataframe
     '''
-    # dataframe.name ensures that name of dataframe is passed to the filename rather than the dataframe itself
-    dataframe.to_csv(f'{dataframe.name}.csv', sep=',', index=False)
+    # df_name ensures that name of dataframe is passed to the filename (csv_file) rather than the dataframe itself
+    df_name = str(f'{dataframe.name}')
+    csv_file = str(f'{df_name}.csv')
+    dataframe.to_csv(csv_file, sep=',', index=False)
+    
+    #path of file to print to console when saved
+    csv_path = os.path.realpath(f'{df_name}.csv')
     
     # printed line confirms name of .csv file that has been created.
-    print(f'{dataframe.name} dataframe saved to {dataframe.name}.csv in folder')
+    print(f'{df_name} dataframe saved as {csv_file} at {csv_path}')
 
 if __name__ == '__main__':
     loan_payments = loan_payments_to_dataframe('credentials')

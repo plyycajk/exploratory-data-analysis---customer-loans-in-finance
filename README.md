@@ -42,6 +42,22 @@ A yaml file with database log-in credentials is required in order to establish t
 This file initiates a class (RDSDatabaseConnector) which establishes a connection with the database. 
 Subsequent functions in this file run a specific query in the database to extract loan patyment information and save this to a .csv file (loan_payments.csv).
 
+### loan_payments.csv
+
+This is the .csv file generated from data extracted by the db_utils.py script
+
+### familiarise_with_data.py
+
+This python script details the steps taken whilst I familiarised myself with the raw data in load_payments.csv. Steps taken include:
+
+- inspection of the head of the dataframe
+- checking the shape of the dataframe
+- checking the datatype of each column
+- checking the percentage of null values per columns
+
+### eda_loans_data.py
+
+This python script includes the DataTransform class which converts the columns to the correct datatype.
 
 ## License information
 None
