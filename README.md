@@ -46,18 +46,20 @@ Subsequent functions in this file run a specific query in the database to extrac
 
 This is the .csv file generated from data extracted by the db_utils.py script
 
-### familiarise_with_data.py
+### familiarise_with_data.ipynb
 
-This python script details the steps taken whilst I familiarised myself with the raw data in load_payments.csv. Steps taken include:
+This .ipynb file details the steps taken whilst I familiarised myself with the raw data in load_payments.csv. Steps taken include:
 
 - inspection of the head of the dataframe
 - checking the shape of the dataframe
 - checking the datatype of each column
+- checking potential categorical columns
 - checking the percentage of null values per columns
 
 ### eda_loans_data.py
 
 This python script includes the DataTransform class which converts the columns to the correct datatype.
+
 
 ## License information
 None

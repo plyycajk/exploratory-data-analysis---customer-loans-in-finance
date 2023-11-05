@@ -1,0 +1,35 @@
+---
+# keys are the required transformation methods listed, values are a list of the columns these are to be applied to 
+
+str_to_datetime: #datetime transformation columns
+  - 'issue_date'
+  - 'earliest_credit_line'
+  - 'last_payment_date'
+  - 'next_payment_date'
+  - 'last_credit_pull_date'
+
+to_category: #categorical column transformations
+  - 'policy_code',
+  - 'loan_status', 
+  - 'grade',
+  - 'term',
+  - 'employment_length', 
+  - 'sub_grade', 
+  - 'home_ownership', 
+  - 'verification_status', 
+  - 'loan_status', 
+  - 'payment_plan', 
+  - 'purpose',
+  - 'policy_code',
+  - 'application_type'
+
+#remove_text: #columns to remove excess symbols from and the specfied text to 
+#  - term:
+#    - " MONTHS": ""
+#  - employment_length:
+#    - " years" : ""
+#    - "<1" : "0"
+
+remove_text: #columns to remove excess symbols from and the specfied text to 
+  - term: {" MONTHS": ""}
+  - employment_length: {" years" : "", "<1" : "0"}
