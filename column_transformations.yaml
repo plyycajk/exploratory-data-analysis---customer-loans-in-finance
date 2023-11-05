@@ -9,27 +9,20 @@ str_to_datetime: #datetime transformation columns
   - 'last_credit_pull_date'
 
 to_category: #categorical column transformations
-  - 'policy_code',
-  - 'loan_status', 
-  - 'grade',
-  - 'term',
-  - 'employment_length', 
-  - 'sub_grade', 
-  - 'home_ownership', 
-  - 'verification_status', 
-  - 'loan_status', 
-  - 'payment_plan', 
-  - 'purpose',
-  - 'policy_code',
+  - 'policy_code'
+  - 'loan_status' 
+  - 'grade'
+  - 'term'
+  - 'employment_length'
+  - 'sub_grade'
+  - 'home_ownership'
+  - 'verification_status'
+  - 'loan_status'
+  - 'payment_plan' 
+  - 'purpose'
+  - 'policy_code'
   - 'application_type'
 
-#remove_text: #columns to remove excess symbols from and the specfied text to 
-#  - term:
-#    - " MONTHS": ""
-#  - employment_length:
-#    - " years" : ""
-#    - "<1" : "0"
-
 remove_text: #columns to remove excess symbols from and the specfied text to 
-  - term: {" MONTHS": ""}
-  - employment_length: {" years" : "", "<1" : "0"}
+  - term: {" months": "", " MONTHS": ""}
+  - employment_length: {" years" : ""," year": "", "<1" : "0", "+": ""}
