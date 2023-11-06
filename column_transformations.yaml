@@ -23,6 +23,10 @@ to_category: #categorical column transformations
   - 'policy_code'
   - 'application_type'
 
+to_string: #columns to convert to string
+  - 'id'
+  - 'member_id'
+
 remove_text: #columns to remove excess symbols from and the specfied text to 
   - term: {" months": "", " MONTHS": ""}
   - employment_length: {" years" : ""," year": "", "<1" : "0", "+": ""}
