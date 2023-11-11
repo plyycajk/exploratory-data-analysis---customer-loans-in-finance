@@ -1,0 +1,29 @@
+---
+drop_cols: # columns to be dropped from the dataframe (such as due to too many null values)
+  - 'mths_since_last_delinq'
+  - 'mths_since_last_record'
+  - 'mths_since_last_major_derog'
+  - 'next_payment_date'
+
+impute_median:
+  - 'term'
+  - 'employment_length'
+
+impute_mean:
+  - 'int_rate'
+
+impute_with_col:
+  - 'funded_amount': {'funded_amount':'loan_amount'}
+  - 'last_payment_date': {'last_payment_date':'last_credit_pull_date'}
+
+log_transforms: 
+  - 'recoveries'
+  - 'total_rec_late_fee'
+  - 'delinq_2yrs'
+  - 'inq_last_6mths'
+  - 'annual_inc'
+  - 'out_prncp'
+  - 'out_prncp_inv'
+  - 'last_payment_amount'
+  - 'collections_12_mths_ex_med'
+  - 'collection_recovery_fee'
