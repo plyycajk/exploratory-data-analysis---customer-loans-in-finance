@@ -6,13 +6,12 @@ import pandas as pd
 import seaborn as sns
 from statsmodels.graphics.gofplots import qqplot
 from matplotlib import pyplot
-import plotly.express as px
-from scipy import stats
+import plotly.graph_objects as go
 
 
 class Plotter:
     '''
-    Docstring for class
+    This class
     '''
 
     def __init__(self, dataframe):
@@ -32,13 +31,35 @@ class Plotter:
         cmap = sns.diverging_palette(220, 10, as_cmap=True)
 
         return sns.heatmap(corr, mask=mask, square=True, linewidths=.5, annot=False, cmap=cmap)
-    
+  
     def qq_plot(self,column):
         return qqplot(self.df[column] , scale=1 ,line='q', fit=True)
-    
-    def box_plot(self, column):
-        return px.box(self.df, y=column)
 
+    def box_plot(self):
+        #return numeric data columns to visualise in box plot    
+        cols = self.df.select_dtypes('number').columns
+        #list of trace visibilities to allow filtering with a button
+        vis = []
+        fig = go.Figure()
+        col_buttons = []    #for dropdown list of columns
+        
+        for count, col in enumerate(cols):
+          vis = [False]*len(cols)
+          vis[count] = True
+          fig.add_trace(go.Box(y=self.df[col], name=''))
+          col_button = dict(label=col, method= "update", args=[{"visible": vis},{"title":f'Distribution of data in the <b>{col}</b> column'}])
+          col_buttons.append(col_button)
+          fig.update(layout_showlegend=False)
+        
+        fig.update_layout(
+            {"updatemenus":[
+             {"name":"Select Column",
+           "type":"dropdown",
+           "showactive":True,
+           "buttons":col_buttons,"x":-0.04, "y":1
+           }
+             ]})
+        return fig    
 
 class DataFrameTransform:
     '''
@@ -51,14 +72,12 @@ class DataFrameTransform:
     
     def impute_mean(self):
         for col in self.transformations["impute_mean"]:
-            mean = self.df[col].mean()
-            self.df[col] = self.df[col].fillna(value=mean)
+            self.df[col] = self.df[col].fillna(value=self.df[col].mean())
         return self.df
 
     def impute_median(self):
         for col in self.transformations["impute_median"]:
-            median = self.df[col].median()
-            self.df[col] = self.df[col].fillna(value=median)
+            self.df[col] = self.df[col].fillna(value=self.df[col].median())
         return self.df
     
     def impute_with_col(self):
@@ -75,8 +94,7 @@ class DataFrameTransform:
                 self.df[null_cols] = self.df[null_cols].fillna(self.df[value_cols])
             return self.df
 
-    def drop_cols(self):
-        cols = self.transformations['drop_cols']
+    def drop_cols(self, cols: list):
         self.df.drop(columns=cols, inplace=True)
         return self.df
     
@@ -87,19 +105,27 @@ class DataFrameTransform:
     def log_transform(self):
         skewed_cols_log = self.transformations['log_transforms']
         for col in skewed_cols_log:
-            logs = self.df[col].map(lambda x: np.log(x) if x > 0 else 0)
-            self.df[col] = logs
+            self.df[col] = self.df[col].map(lambda x: np.log(x) if x > 0 else 0)
         return self.df
-
+    
     def impute_and_dropna(self):
         self.impute_mean()
         self.impute_median()
         self.impute_with_col()
-        self.drop_cols()
+        self.drop_cols(self.transformations['drop_cols'])
         self.drop_rows()
         return self.df
 
+    def remove_outliers(self, columns: list):
+      for outlier_col in columns:
+            Q1 = self.df[outlier_col].quantile(0.25)
+            Q3 = self.df[outlier_col].quantile(0.75)
+            IQR = Q3 - Q1
+            # identify outliers
+            threshold = 1.5
+            outliers = self.df[(self.df[outlier_col] < Q1 - threshold * IQR) | (self.df[outlier_col] > Q3 + threshold * IQR)]
+            self.df = self.df.drop(outliers.index)
+      return self.df
+
     def load(self):
         return self.df
-
-

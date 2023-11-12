@@ -24,15 +24,8 @@ class  RDSDatabaseConnector(object):
     This class establishes a connection to a relational database
     
     Attributes:
-        self.db_credentials (dict): database credentials to allow connection, loaded from load_credentials() function
-        self.user (str): username for user connecting (loaded from credentials file)
-        self.password (str): password for user connecting (loaded from credentials file)
-        self.host (str): host info for the database being connected to (loaded from credentials file)
-        self.database (str): database name of database being connected to (loaded from credentials file)
-        self.db_type (str): type of database being connected to
-        self.dbapi (str): chosen database API for connection
-        self.engine (obj): SQLAlchemy engine to establish connection to the database
-        self.dbconn (obj): database connection object
+        connection_credentials (file): a .yaml file that provides the required log in information
+
     '''
 
     def __init__(self, connection_credentials):
@@ -107,7 +100,6 @@ def save_to_csv(dataframe):
     
     # printed line confirms name of .csv file that has been created.
     print(f'{df_name} dataframe saved as {csv_file} at {csv_path}')
-
 
 if __name__ == '__main__':
     loan_payments = loan_payments_to_dataframe('credentials')
