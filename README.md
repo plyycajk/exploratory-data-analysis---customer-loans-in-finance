@@ -5,6 +5,15 @@
 1. [Installation instructions](#installation-instructions)
 1. [Usage instructions](#usage-instructions)
 1. [File structure](#file-structure)
+    - [db_utils.py](#db_utilspy)
+    - [loan_payments.csv](#loan_paymentscsv)
+    - [familiarise_with_data.ipynb](#familiarise_with_dataipynb)
+    - [create_df.py](#create_dfpy)
+    - [df_EDA.py](#df_edapy)
+    - [Data_Post_Transformation.csv](#data_post_transformationcsv)
+    - [df_transformations.yaml](#df_transformationsyaml)
+    - [drops_and_imputations.yaml]
+
 1. [License information](#license-information)
 
 ## Description
@@ -56,10 +65,49 @@ This .ipynb file details the steps taken whilst I familiarised myself with the r
 - checking potential categorical columns
 - checking the percentage of null values per columns
 
-### eda_loans_data.py
+### create_df.py
 
-This python script includes the DataTransform class which converts the columns to the correct datatype.
+This python script includes the DataTransform class which performs the following actions:
+- converts specified columns to specified datatypes
+- replaces specified text in specified columns
 
+This script also includes the DataFrame info class which returns the following information:
+- Summary statistics for each numeric column in the dataframe
+- The dtypes for each dataframe column
+- The number of distinct values in each categorical column
+- The shape of the dataframe
+- The percentage of null values per column
+- The skew for each column
+
+Running the script outputs a transformed version of the laon_payments.csv file with changes as specified in the 'df_transformations.yaml' file
+
+### df_EDA.py
+
+This file includes the Plotter class and the DataFrameTransform class. The Plotter class produces a number of visualisations includings:
+
+- <b>Box plot</b>: for outlier identification. Columns are navigated through via the dropdown 
+![Box plot](image.png)
+
+- <b>Heat map</b>: for identifying collinearity between columns 
+![Heat map](image-1.png)
+
+- <b>Histogram</b>: for visualising the distribution of data in columns
+![Histogram](image-2.png)
+
+- <b>Missing values</b>: to see the spread of missing values within the data
+![msno](image-4.png)
+
+### Data_Post_Transformation.csv
+
+The updated data following the transformations run in the df_EDA.py file (when running the script)
+
+### df_transformations.yaml
+
+This yaml file specifies the columns and types of transformations to be applied to the dataframe upon initial data exploration (updating dtypes, trimming text and so on)
+
+### drops_and_imputations.yaml
+
+This yaml file specifies the imputations to be performed on the data as well as the columns to be dropped
 
 ## License information
 None
