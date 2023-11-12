@@ -12,7 +12,7 @@
     - [df_EDA.py](#df_edapy)
     - [Data_Post_Transformation.csv](#data_post_transformationcsv)
     - [df_transformations.yaml](#df_transformationsyaml)
-    - [drops_and_imputations.yaml]
+    - [drops_and_imputations.yaml](#drops_and_imputationsyaml)
 
 1. [License information](#license-information)
 
@@ -107,7 +107,7 @@ This yaml file specifies the columns and types of transformations to be applied 
 
 ### drops_and_imputations.yaml
 
-This yaml file specifies the imputations to be performed on the data as well as the columns to be dropped
+This yaml file specifies the imputations to be performed on the data
 
 ## License information
 None

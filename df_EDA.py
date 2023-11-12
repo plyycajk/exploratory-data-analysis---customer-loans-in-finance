@@ -168,10 +168,6 @@ if __name__ == '__main__':
 
     log_transformed_no_outliers = DataFrameTransform(log_transforms, 'drops_and_imputations').remove_outliers(outliers)
 
-    collinear_cols = ['funded_amount','funded_amount_inv','out_prncp_inv','total_payment_inv','total_rec_prncp']
-
-    log_transformed_no_outliers = DataFrameTransform(log_transforms, 'drops_and_imputations').drop_cols(collinear_cols)
-
     log_transformed_no_outliers.to_csv('Data_Post_Transformation.csv')
 
 
