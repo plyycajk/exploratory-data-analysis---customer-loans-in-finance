@@ -96,7 +96,7 @@ class DataFrameInfo:
        self.dtype_cols = self.df.dtypes
        self.cat_distinct_values = self.df.select_dtypes(include='category').nunique()
        self.df_shape = self.df.shape
-       self.null_percentage = self.df.isnull().sum()/len(self.df)
+       self.null_percentage = self.df.isnull().sum()/len(self.df)*100
        self.skew_cols = self.df.skew()
        
     def describe_cols(self):
