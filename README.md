@@ -13,23 +13,26 @@
     - [Data_Post_Transformation.csv](#data_post_transformationcsv)
     - [df_transformations.yaml](#df_transformationsyaml)
     - [drops_and_imputations.yaml](#drops_and_imputationsyaml)
+    - [analysis/ipynb](#analysisipynb)
+    - [requirements.txt](#requirementstxt)
 
 1. [License information](#license-information)
 
 ## Description
 This project accesses a relational database and extracts data for exploratory data analysis.
+Two ipynb files document some analysis undertaken on the data extracted.
 
-I learnt how to use SQLAlchemy to connect to a database as well as how to structure this within a class by use of the  __ enter __ and __ exit __ magic methods.
+I learnt how to use SQLAlchemy to connect to a database as well as how to structure this within a class by use of the  __ enter __ and __ exit __ magic methods. I developed my use of classes in order to create classes and associated functions for potential reuse in future projects.
 
 I also learnt how to keep login details out of scripts by use of the separate .yaml file in the directory, and using .gitignore to prevent this information being shared to the Github repository.
 
+I developed my ability to document my project appropriately via the README.md file.
+
+As well as visualising data, I transformed it, removed outliers and imputed missing values based on the characteristics of the columns in the data.
+
 ## Installation instructions
 
-This project requires the following packages to be installed in order to run correctly:
-
-- pandas
-- SQLAlchemy
-- Pyyaml
+The requirements.txt file in the project folder contains a breakdown of the packages required to run this project.
 
 In order to establish a connection to the database, db_utils. py requires a .yaml file (with database connection credentials) to be saved in the same directory. Values need to be populated against the following keys:
 
@@ -108,6 +111,14 @@ This yaml file specifies the columns and types of transformations to be applied 
 ### drops_and_imputations.yaml
 
 This yaml file specifies the imputations to be performed on the data
+
+### analysis.ipynb
+
+Visualisations and insights into the dataset once it had been extracted and transformed.
+
+### requirements.txt
+
+A file detailing the required packages in order to run the project
 
 ## License information
 None

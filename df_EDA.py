@@ -132,7 +132,7 @@ class DataFrameTransform:
             IQR = Q3 - Q1
             # identify outliers
             threshold = 1.5
-            outliers = self.df[(self.df[outlier_col] < Q1 - threshold * IQR) | (self.df[outlier_col] > Q3 + threshold * IQR)]
+            outliers = self.df[(self.df[outlier_col] < Q1 - threshold * IQR) | (self.df[outlier_col] > Q3 + threshold * IQR)] #create subset of outliers outside the IQR
             self.df = self.df.drop(outliers.index)
       return self.df
 
