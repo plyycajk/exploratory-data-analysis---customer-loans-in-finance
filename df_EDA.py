@@ -111,11 +111,6 @@ class DataFrameTransform:
         self.df.drop(columns=cols, inplace=True)
         return self.df
     
-    def drop_rows(self):
-        '''This function drops rows containing na data from the DataFrame'''
-        self.df.dropna(axis=0, inplace=True)
-        return self.df
-    
     def log_transform(self):
         '''This function applies log transformations on columns specified in the yaml file'''
         skewed_cols_log = self.transformations['log_transforms']
@@ -128,7 +123,6 @@ class DataFrameTransform:
         self.impute_median(self.transformations["impute_median"])
         self.impute_with_col()
         self.drop_cols(self.transformations['drop_cols'])
-        self.drop_rows()
         return self.df
 
     def remove_outliers(self, columns: list):
@@ -154,17 +148,12 @@ if __name__ == '__main__':
 
     log_transforms = DataFrameTransform(transformed_loan_payments, 'drops_and_imputations').log_transform()
 
-    outliers = ['annual_inc',
-            'funded_amount',
-            'int_rate',
-            'inq_last_6mths',
+    outliers = ['int_rate',
             'loan_amount',
-            'instalment',
             'total_payment',
             'last_payment_amount',
             'total_rec_int',
-            'total_rec_late_fee',
-            'collections_12_mths_ex_med']
+            'total_rec_late_fee']
 
     log_transformed_no_outliers = DataFrameTransform(log_transforms, 'drops_and_imputations').remove_outliers(outliers)
 

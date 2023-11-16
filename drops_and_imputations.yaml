@@ -17,13 +17,8 @@ impute_with_col:
   - 'last_payment_date': {'last_payment_date':'last_credit_pull_date'}
 
 log_transforms: 
-  - 'recoveries'
   - 'total_rec_late_fee'
-  - 'delinq_2yrs'
-  - 'inq_last_6mths'
   - 'annual_inc'
   - 'out_prncp'
   - 'out_prncp_inv'
   - 'last_payment_amount'
-  - 'collections_12_mths_ex_med'
-  - 'collection_recovery_fee'
