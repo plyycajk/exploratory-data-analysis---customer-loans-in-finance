@@ -55,7 +55,7 @@ class Plotter:
         for count, col in enumerate(cols): #enumerate through cols to help set visibility of traces on button
           vis = [False]*len(cols)
           vis[count] = True #sets trace visibilities for each trace when selection made on the dropdown'
-          fig.add_trace(go.Box(y=self.df[col], name=''))
+          fig.add_trace(go.Box(y=self.df[col], name='', visible='legendonly'))
           col_button = dict(label=col, method= "update", args=[{"visible": vis},{"title":f'Distribution of data in the <b>{col}</b> column'}])
           col_buttons.append(col_button)
           fig.update(layout_showlegend=False)
