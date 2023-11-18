@@ -49,6 +49,10 @@ A yaml file with database log-in credentials is required in order to establish t
 
 ## File structure
 
+### analysis.ipynb
+
+Final visualisations and insights into the dataset once it had been extracted and transformed.
+
 ### db_utils.py
 
 This file initiates a class (RDSDatabaseConnector) which establishes a connection with the database. 
@@ -111,10 +115,6 @@ This yaml file specifies the columns and types of transformations to be applied 
 ### drops_and_imputations.yaml
 
 This yaml file specifies the imputations to be performed on the data
-
-### analysis.ipynb
-
-Visualisations and insights into the dataset once it had been extracted and transformed.
 
 ### requirements.txt
 
