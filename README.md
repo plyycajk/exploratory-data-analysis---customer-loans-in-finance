@@ -51,7 +51,7 @@ A yaml file with database log-in credentials is required in order to establish t
 
 ### analysis.ipynb
 
-Final visualisations and insights into the dataset once it had been extracted and transformed.
+Final visualisations and insights into the dataset once it had been extracted and transformed. This file details the findings after interrogating the dataset
 
 ### db_utils.py
 
