@@ -5,6 +5,7 @@
 1. [Installation instructions](#installation-instructions)
 1. [Usage instructions](#usage-instructions)
 1. [File structure](#file-structure)
+    - [analysis/ipynb](#analysisipynb)
     - [db_utils.py](#db_utilspy)
     - [loan_payments.csv](#loan_paymentscsv)
     - [familiarise_with_data.ipynb](#familiarise_with_dataipynb)
@@ -13,7 +14,6 @@
     - [Data_Post_Transformation.csv](#data_post_transformationcsv)
     - [df_transformations.yaml](#df_transformationsyaml)
     - [drops_and_imputations.yaml](#drops_and_imputationsyaml)
-    - [analysis/ipynb](#analysisipynb)
     - [requirements.txt](#requirementstxt)
 
 1. [License information](#license-information)
